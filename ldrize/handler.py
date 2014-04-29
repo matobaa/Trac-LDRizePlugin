@@ -18,7 +18,7 @@ class LDRize(Component):
 
     # ITemplateProvider methods
     def get_templates_dirs(self):
-        return [ResourceManager().resource_filename(__name__, 'templates')]
+        return []
 
     def get_htdocs_dirs(self):
         return [('ldrize', ResourceManager().resource_filename(__name__, 'htdocs'))]
