@@ -1,0 +1,34 @@
+/* -*- coding: utf-8 -*-
+ *
+ * Copyright (C) 2014 MATOBA Akihiro <matobaa+trac-hacks@gmail.com>
+ * All rights reserved.
+ *
+ * This software is licensed as described in the file LISENSE, which
+ * you should have received as part of this distribution.
+ */
+ 
+#content.report .ldrize-focus td.ticket,
+table.listing.tickets .ldrize-focus td.ticket,
+table.listing.tickets .ldrize-focus td.id,
+#content.report div.ldrize-focus,
+#content.search dt.ldrize-focus,
+#content.ticket .ldrize-focus h3.change {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAALCAIAAADN+VtyAAAABnRSTlMA/wD/AP83WBt9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAtElEQVR42mP4////////Zxob/0cFDBDR5wsW1KqqIkswzTIx8cvN/ff9e2pKSp2aGgMMMKWdObNp8mQmTs6/P37E+/vD5ZgYGBggchzy8v++f4+ytobIMf7//x+iBGLmux07/n39uurGDSZk0fe7d//7+XPVjRtNt24xwUU/7N//7+fPVVeuNN26xcDAwCy1ZYtfbu7HQ4f+ff++8sIFiCgDAwPUH9eiotD8wQCh0ET///8PAI0Gmocmb3e4AAAAAElFTkSuQmCC);
+	background-position: -1px 3px;
+	background-repeat: no-repeat;
+}
+
+#content.report div.ldrize-focus,
+#content.search dt.ldrize-focus {
+	padding-left: 8px;
+}
+
+#content.timeline .ldrize-focus {
+	border-style: solid;
+	border-width: thin;
+	border-color: #bbf;
+}
+
+.ldrize-pinned td.ticket {
+	text-decoration: underline;
+}
