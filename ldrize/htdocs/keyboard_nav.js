@@ -8,7 +8,6 @@
 $(document).ready(function($) {
   var index = -1;
   var rows;
-  var ENABLE_KEY_NAV = true;
 //  path = $('#search')[0].action;
 //  path = path.substring(0, path.length - 7);
   ticket = $('#content.ticket').length;
@@ -77,7 +76,7 @@ $(document).ready(function($) {
   }
   $(document).bind('keydown', 
     ticket ? function(event) {
-      if (!ENABLE_KEY_NAV) return true;
+      if (!enable_key_nav()) return true;
       if (event.which == 71) { g(event) }
       if (event.which == 72) { h(event) }
       if (event.which == 40) { j(event) } // down arrow
@@ -96,50 +95,8 @@ $(document).ready(function($) {
       if (event.which == 57) { move(function(index) {return 9})(event) }
       if (event.key == '/') { $("#proj-search").focus(); event.preventDefault(); }
     } :
-      query ? function(event) {
-      if (!ENABLE_KEY_NAV) return true;
-      if (event.which == 40) { j(event) } // down arrow
-      if (event.which == 74) { j(event) }
-      if (event.which == 38) { k(event) } // up arrow
-      if (event.which == 75) { k(event) }
-      if (event.which == 79) { o(event) }
-      if (event.which == 80) { p(event) }
-      if (event.which == 86) { v(event) }
-      if (event.which == 13) { v(event) } // Enter key
-      if (event.which == 71) { g(event) }
-      if (event.which == 72) { h(event) }
-      if (event.which == 48) { h(event) } // '0'
-      if (event.key == '/') { $("#proj-search").focus(); event.preventDefault(); }
-    } :
-      timeline ? function(event) {
-      if (!ENABLE_KEY_NAV) return true;
-      if (event.which == 40) { j(event) } // down arrow
-      if (event.which == 74) { j(event) }
-      if (event.which == 38) { k(event) } // up arrow
-      if (event.which == 75) { k(event) }
-      if (event.which == 79) { o(event) }
-      if (event.which == 80) { p(event) }
-      if (event.which == 86) { v(event) }
-      if (event.which == 13) { v(event) } // Enter key
-      if (event.key == '/') { $("#proj-search").focus(); event.preventDefault(); }
-    } :
-      reports ? function(event) {
-      if (!ENABLE_KEY_NAV) return true;
-      if (event.which == 40) { j(event) } // down arrow
-      if (event.which == 74) { j(event) }
-      if (event.which == 38) { k(event) } // up arrow
-      if (event.which == 75) { k(event) }
-      if (event.which == 79) { o(event) }
-      if (event.which == 80) { p(event) }
-      if (event.which == 86) { v(event) }
-      if (event.which == 13) { v(event) } // Enter key
-      if (event.which == 71) { g(event) }
-      if (event.which == 72) { h(event) }
-      if (event.which == 48) { h(event) } // '0'
-      if (event.key == '/') { $("#proj-search").focus(); event.preventDefault(); }
-    } :
-      search ? function(event) {
-      if (!ENABLE_KEY_NAV) return true;
+      query | reports | search | timeline ? function(event) {
+      if (!enable_key_nav()) return true;
       if (event.which == 40) { j(event) } // down arrow
       if (event.which == 74) { j(event) }
       if (event.which == 38) { k(event) } // up arrow
@@ -155,11 +112,13 @@ $(document).ready(function($) {
     } :
     function() { /* default; pass */ }
   )
+  enable_key_nav = function() {
+    var element = (document.activeElement || window.getSelection().focusNode);
+      return $.inArray(element.nodeName.toLowerCase(),
+        ["a","input","select","textarea","button"]) == -1; // not found
+  }
+
   $(function() {
-    $('a,input,select,textarea,button').bind({
-      focus: function() { ENABLE_KEY_NAV = false; },
-      blur: function() { ENABLE_KEY_NAV = true; }
-    });
     $("#dirlist tr").live('mouseenter', function() {
       LAST_HOVERED_FILE_ELEM = $(this);
     });
